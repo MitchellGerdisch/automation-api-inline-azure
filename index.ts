@@ -1,8 +1,6 @@
 import { InlineProgramArgs, LocalWorkspace } from "@pulumi/pulumi/automation";
 import { resources } from "@pulumi/azure-native";
 import { storage } from "@pulumi/azure-native";
-// "@pulumi/azure-native": "^2.0.0-beta.1",
-// "@pulumi/azure-native": "^1.0.0",
 const process = require('process');
 
 const args = process.argv.slice(2);
@@ -15,11 +13,15 @@ const run = async () => {
     // This is our pulumi program in "inline function" form
     const pulumiProgram = async () => {
         // Create an Azure Resource Group
-        const resourceGroup = new resources.ResourceGroup("resourceGroup");
+        const resourceGroup = new resources.ResourceGroup("resourceGroup", {
+            location: "CentralUS"
+        });
+
 
         // Create an Azure resource (Storage Account)
         const storageAccount = new storage.StorageAccount("sa", {
             resourceGroupName: resourceGroup.name,
+            location: resourceGroup.location,
             sku: {
                 name: storage.SkuName.Standard_LRS,
             },
