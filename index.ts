@@ -1,7 +1,8 @@
 import { InlineProgramArgs, LocalWorkspace } from "@pulumi/pulumi/automation";
 import { resources } from "@pulumi/azure-native";
 import { storage } from "@pulumi/azure-native";
-
+// "@pulumi/azure-native": "^2.0.0-beta.1",
+// "@pulumi/azure-native": "^1.0.0",
 const process = require('process');
 
 const args = process.argv.slice(2);
